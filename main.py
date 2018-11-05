@@ -22,10 +22,21 @@ class Blog(db.Model):
 @app.route('/blog', methods=['GET'])
 def index():
 
+    id = request.args.get('id')
     entries = Blog.query.all()
-    
-    return render_template('blog.html',title="Build a Blog", 
-        entries=entries)
+    print(id)
+    print(entries)
+
+    if not id:
+            
+        return render_template('blog.html',title="Build a Blog", 
+            entries=entries)
+
+    else:
+        entry = Blog.query.filter_by(id=id).first()
+        print(entry)
+        return render_template('entry.html',title="Build a Blog",
+            entry=entry)
 
 
 @app.route('/newpost', methods=['GET'])
