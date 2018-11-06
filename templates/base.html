@@ -2,40 +2,7 @@
 <html>
     <head>
         <title>{{title}}</title>
-        <style>
-            .error { 
-                color: red; 
-                text-align: left;
-                }
-
-            .nav {
-                padding: 20px;
-                }
-
-            h1 {
-                text-align: center;
-                }
-
-            h2, div {
-                padding: 0px 20px;
-            }
-
-            textarea {
-                width: 500px;
-                height: 300px;
-                }  
-
-            .grid {
-                display: grid;
-                grid-gap: 20px 20px;
-                grid-template-columns: 120px 520px auto;
-                grid-template-rows: auto auto;
-            }
-
-            .grid-item {
-                justify-self: start;
-            }         
-        </style>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
     </head>
 <body>
 
