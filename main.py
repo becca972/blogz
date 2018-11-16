@@ -24,8 +24,6 @@ def index():
 
     id = request.args.get('id')
     entries = Blog.query.all()
-    print(id)
-    print(entries)
 
     if not id:
             
