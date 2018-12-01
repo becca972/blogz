@@ -159,18 +159,27 @@ def list_blogs():
 
     id = request.args.get('id')
     user_id = request.args.get('userid')
-    entries = Blog.query.all()
+    
+
+    #author = User.query.filter_by(id=id_num).first().username
+    # redir = 'blog?id=' + str(id)
+    #     return redirect(redir)
 
     if not id:
             
-        return render_template('blog.html',title="Build a Blog", 
-            entries=entries)
+        if not user_id:
+            entries = Blog.query.all()
+            return render_template('blog.html',title="Build a Blog", 
+                entries=entries)
+
+        else:
+            filtered_entries = Blog.query.filter_by(owner_id = user_id).all()
+            return render_template('blog.html',entries=filtered_entries)
 
     else:
         entry = Blog.query.filter_by(id=id).first()
-        print(entry)
         return render_template('entry.html',title="Build a Blog",
-            entry=entry)
+            entry=entry, user_id=user_id)
 
 #NEW POST
 

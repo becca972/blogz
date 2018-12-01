@@ -9,11 +9,10 @@
 {% else %}
     {% for user in users %}
         
-        <h2>{{user.username}}</h2>
+        <h2><a name='userid' href="./blog?userid={{user.id}}">{{user.username}}</a></h2>
+    
     {% endfor %}
     
 {% endif %}
 
 {% endblock %}
-
-<!-- <h2><a name='id' href="./blog?id={{entry.id}}">{{entry.title}}</a></h2> -->
