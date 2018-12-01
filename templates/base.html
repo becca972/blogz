@@ -6,14 +6,25 @@
     </head>
 <body>
 
+    <span><a class="nav" href="/">Home</a></span>
+    <span><a class="nav" href="/login">Login</a></span>
     <span><a class="nav" href="/blog">View All Blog Entries</a></span>
     <span><a class="nav" href="/newpost">Add a New Blog Entry</a></span>
+    <span><a class="nav" href="/logout">Logout</a></span>
+    
+    {% with messages = get_flashed_messages() %}
+        <ul>
+        {% for message in messages %}
+            <li class="error">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+
     <header><h1>Build a Blog</h1></header>
     <hr />
-    <!-- {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-    {% endfor %}
-     -->
+    
+
+
     {% block content %}
     {% endblock %}
 

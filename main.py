@@ -44,6 +44,15 @@ def empty(value):
         return True
 
 
+#REQUIRE LOGIN
+
+@app.before_request
+def require_login():
+    allowed_routes = ['login', 'signup', 'list_blogs', 'index']
+    if request.endpoint not in allowed_routes and 'username' not in session:
+        return redirect('/login')
+
+
 #LOGIN
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -51,13 +60,21 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
         user = User.query.filter_by(username=username).first()
         if user and user.password == password:
             session['username'] = username
             flash("Logged in")
-            return redirect('/')
+
+            return redirect('/newpost')
+
         else:
-            flash('User password incorrect, or user does not exist', 'error')
+            if user:
+                flash('User password incorrect.')
+            else:
+                flash('Username does not exist.')
+            
+            return redirect('/login')
 
     return render_template('login.html')
 
@@ -100,8 +117,10 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 session['username'] = username
-                flash("You are logged in as {{username}}.")
-                return redirect('/blog')
+                flash("Account created")
+                
+                return redirect('/newpost')
+            
             else:
                 flash("That username is already in use. Please choose another username.")
                 return render_template('signup.html')
@@ -116,12 +135,30 @@ def signup():
     else:
         return render_template('signup.html')
 
+#LOGOUT
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect('/blog')
+
+#ROOT - TODO: FIX
+
+@app.route('/')
+def index():
+    
+    users = User.query.all()
+
+    return render_template('index.html',title="All Authors",
+        users=users)
+
 #VIEW BLOG
 
 @app.route('/blog', methods=['GET'])
-def index():
+def list_blogs():
 
     id = request.args.get('id')
+    user_id = request.args.get('userid')
     entries = Blog.query.all()
 
     if not id:
