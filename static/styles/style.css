@@ -38,17 +38,18 @@ textarea {
 .author {
     font-style: italic;
     font-size: small;
+    text-align: right;
 }
 
 header {
-    background-color: #76ff5b;
+    background-color: #fcab7d;
     width: 900px;
     margin: 0 auto;
     text-align: center;
 }
 
 body {
-  background-color: rgb(231, 247, 228);
+  background-color: #fff1e9;
   font-family: 'Lato', sans-serif;
   width: 900px;
   margin: 0 auto;

@@ -76,7 +76,7 @@ def login():
             
             return redirect('/login')
 
-    return render_template('login.html')
+    return render_template('login.html', title="Bloggy|Login")
 
 #SIGNUP
 
@@ -123,17 +123,17 @@ def signup():
             
             else:
                 flash("That username is already in use. Please choose another username.")
-                return render_template('signup.html')
+                return render_template('signup.html', title="Bloggy|Signup")
 
         else:
-            return render_template('signup.html',
+            return render_template('signup.html', title="Bloggy|Signup",
                 username_error = username_error,
                 password_error = password_error,
                 verify_error = verify_error,
                 username = username)
 
     else:
-        return render_template('signup.html')
+        return render_template('signup.html', title="Bloggy|Signup")
 
 #LOGOUT
 
@@ -142,14 +142,14 @@ def logout():
     del session['username']
     return redirect('/blog')
 
-#ROOT - TODO: FIX
+#HOME
 
 @app.route('/')
 def index():
     
     users = User.query.all()
 
-    return render_template('index.html',title="All Authors",
+    return render_template('index.html', title="Bloggy|All Authors",
         users=users)
 
 #VIEW BLOG
@@ -160,32 +160,27 @@ def list_blogs():
     id = request.args.get('id')
     user_id = request.args.get('userid')
     
-
-    #author = User.query.filter_by(id=id_num).first().username
-    # redir = 'blog?id=' + str(id)
-    #     return redirect(redir)
-
     if not id:
             
         if not user_id:
             entries = Blog.query.all()
-            return render_template('blog.html',title="Build a Blog", 
+            return render_template('blog.html',title="Bloggy|View All", 
                 entries=entries)
 
         else:
             filtered_entries = Blog.query.filter_by(owner_id = user_id).all()
-            return render_template('blog.html',entries=filtered_entries)
+            return render_template('singleUser.html',title="Bloggy|User Page",entries=filtered_entries)
 
     else:
         entry = Blog.query.filter_by(id=id).first()
-        return render_template('entry.html',title="Build a Blog",
+        return render_template('entry.html',title="Bloggy|Single Entry",
             entry=entry, user_id=user_id)
 
 #NEW POST
 
 @app.route('/newpost', methods=['GET'])
 def form():
-    return render_template('newpost.html',title="Add a Blog Entry")
+    return render_template('newpost.html',title="Bloggy|New Post")
 
 
 @app.route('/newpost', methods=['POST'])
@@ -212,20 +207,9 @@ def newpost():
         redir = 'blog?id=' + str(id)
         return redirect(redir)
     else:
-        return render_template('newpost.html', blog_title=blog_title, title_error=title_error, 
+        return render_template('newpost.html', title="Bloggy|New Post", blog_title=blog_title, title_error=title_error, 
             blog_body=blog_body, body_error=body_error)
         
-
-# @app.route('/delete-task', methods=['POST'])
-# def delete_task():
-
-#     task_id = int(request.form['task-id'])
-#     task = Blog.query.get(task_id)
-#     task.completed = True
-#     db.session.add(task)
-#     db.session.commit()
-
-#     return redirect('/')
 
 
 if __name__ == '__main__':
