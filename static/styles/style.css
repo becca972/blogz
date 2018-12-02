@@ -23,10 +23,65 @@ textarea {
 .grid {
     display: grid;
     grid-gap: 15px 15px;
-    grid-template-columns: 185px 520px auto;
+    grid-template-columns: 80px 520px auto;
     grid-template-rows: auto auto;
 }
 
 .grid-item {
     justify-self: start;
+}
+
+.body {
+    padding: 10px;
+}
+
+.author {
+    font-style: italic;
+    font-size: small;
+}
+
+header {
+    background-color: #76ff5b;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+  background-color: rgb(231, 247, 228);
+  font-family: 'Lato', sans-serif;
+  width: 900px;
+  margin: 0 auto;
+  padding: 100px;
+}
+
+h1 {
+  color: rgb(38, 6, 112);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: rgb(38, 6, 112);
+  font-family: 'Lato', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  margin: 0 auto 20px auto;
+  text-transform: uppercase;
+}
+
+h3 {
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  text-align: left;
+  font-weight: 700;
+  }
+
+
+a {
+  text-decoration: none;
+  color: #1b87ec
 }

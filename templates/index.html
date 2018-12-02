@@ -2,14 +2,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h2>Bloggy Users</h2>
 {% if users|length == 0 %}
-<p>No users yet</p>
+<div>No users yet</div>
 
 {% else %}
     {% for user in users %}
         
-        <h2><a name='userid' href="./blog?userid={{user.id}}">{{user.username}}</a></h2>
+        <h3><a name='userid' href="./blog?userid={{user.id}}">{{user.username}}</a></h3>
     
     {% endfor %}
     

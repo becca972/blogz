@@ -7,9 +7,9 @@
     
     {% else %}
         {% for entry in entries %}
-            <h2><a name='id' href="./blog?id={{entry.id}}">{{entry.title}}</a></h2>
-            <div>{{entry.body}}</div>
-            <div>Written by <a name='userid' href="./blog?userid={{entry.owner_id}}">{{entry.owner.username}}</a></div>
+            <h3><a name='id' href="./blog?id={{entry.id}}">{{entry.title}}</a></h3>
+            <div class="body">{{entry.body}}</div>
+            <div class="author">Written by <a name='userid' href="./blog?userid={{entry.owner_id}}">{{entry.owner.username}}</a></div>
             <hr />
         {% endfor %}
         

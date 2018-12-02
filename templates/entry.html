@@ -2,11 +2,8 @@
 
 {% block content %}
 
-    <h2>{{entry.title}}</h2>
-    <div>{{entry.body}}</div>
-    <div>Written by <a name='userid' href="./blog?userid={{entry.owner_id}}">{{entry.owner.username}}</a></div>    
-    
-    
-
-
+    <h3>{{entry.title}}</h3>
+    <div class=>{{entry.body}}</div>
+    <div class="author">Written by <a name='userid' href="./blog?userid={{entry.owner_id}}">{{entry.owner.username}}</a></div>    
+            
 {% endblock %}

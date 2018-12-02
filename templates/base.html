@@ -3,24 +3,30 @@
     <head>
         <title>{{title}}</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,900|Montserrat:400,700" rel="stylesheet">
     </head>
 <body>
 
-    <span><a class="nav" href="/">Home</a></span>
-    <span><a class="nav" href="/login">Login</a></span>
-    <span><a class="nav" href="/blog">View All Blog Entries</a></span>
-    <span><a class="nav" href="/newpost">Add a New Blog Entry</a></span>
-    <span><a class="nav" href="/logout">Logout</a></span>
+    <header>
+        
+        <span><a class="nav" href="/">Home</a></span>
+        <span><a class="nav" href="/blog">View All</a></span>
+        <span><a class="nav" href="/newpost">New Post</a></span>
+        <span><a class="nav" href="/login">Login</a></span>
+        <span><a class="nav" href="/logout">Logout</a></span>
+        
+        <h1>Bloggy</h1>
+    
+    </header>
     
     {% with messages = get_flashed_messages() %}
-        <ul>
-        {% for message in messages %}
-            <li class="error">{{ message }}</li>
-        {% endfor %}
-        </ul>
+    <ul>
+    {% for message in messages %}
+        <li class="error">{{ message }}</li>
+    {% endfor %}
+    </ul>
     {% endwith %}
-
-    <header><h1>Build a Blog</h1></header>
+    
     <hr />
     
 
